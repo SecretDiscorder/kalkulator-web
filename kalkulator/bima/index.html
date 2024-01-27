@@ -1,0 +1,139 @@
+<!-- templates/calculator.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>KALKULATOR WEBSITE PYTHON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 100px auto;
+        }
+		#calculator1 {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+			text-align: left;
+        }
+        #calculator {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 400px;
+            font-size: 18px;
+            text-align: left;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        input[type="button"] {
+            width: 60px;
+            height: 40px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #ccc;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            height: 40px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kalkulator</h1>
+    <div id="calculator">
+	       
+        <form action="{% url '' %}" method="post">
+			{% csrf_token %}
+            <textarea name="expression" id="expression" readonly>{{ result }}</textarea>
+
+            <br>
+
+            <input type="button" value="1" onclick="appendValue('1')">
+            <input type="button" value="2" onclick="appendValue('2')">
+            <input type="button" value="3" onclick="appendValue('3')">
+            <input type="button" value="/" onclick="appendValue('/')">
+            <br>
+
+            <input type="button" value="4" onclick="appendValue('4')">
+            <input type="button" value="5" onclick="appendValue('5')">
+            <input type="button" value="6" onclick="appendValue('6')">
+            <input type="button" value="-" onclick="appendValue('-')">
+            <br>
+
+            <input type="button" value="7" onclick="appendValue('7')">
+            <input type="button" value="8" onclick="appendValue('8')">
+            <input type="button" value="9" onclick="appendValue('9')">
+            <input type="button" value="+" onclick="appendValue('+')">
+            <br>
+
+            <input type="button" value="0" onclick="appendValue('0')">
+            <input type="button" value="." onclick="appendValue('.')">
+            <input type="button" value="^" onclick="appendValue('**')">
+            <input type="button" value="*" onclick="appendValue('*')">
+			<input type="button" value="Mod" onclick="appendValue('%')">
+			
+			<input type="button" value="(" onclick="appendValue('(')">
+			<input type="button" value=")" onclick="appendValue(')')">
+			<input type="button" value="Factorial" onclick="appendValue('!')">
+           
+
+            <input type="submit" value="=">
+            <input type="button" value="C" onclick="clearInput()">
+        </form>
+    </div>
+		<script>
+		function appendValue(value) {
+		if (value === '!') {
+            document.getElementById("expression").value += 'math.factorial(';
+        } else {
+            document.getElementById("expression").value += value;
+        }
+
+        }
+
+        function clearInput() {
+            document.getElementById("expression").value = "";
+        }
+		</script>
+		<div id="calculator1">
+		<b>C = Clear Hapus</b><br>
+		<b>+ = Penjumlahan</b><br>
+		<b>- = Pengurangan</b><br>
+		<b>* = Perkalian</b><br>
+		<b>^ atau ** = perpangkatan</b><br>
+		<b>/ = Bagi</b><br>
+		<b>Mod atau % = Sisa Bagi</b><br>
+		<b>Factori = Faktorial</b><br>
+		<b> USING "FACTORIAL" THEN "Any NUMBER" FINNALY use ")" </b><br>
+		<b> Menggunakan Faktorial tekan tombol "Factorial" kemudian "Angka Berapapun" terakhir pakai ")"</b><br>
+		<b>Example : math.factorial(3)</b><br>
+		</div>
+</body>
+</html>
